@@ -1,0 +1,250 @@
+<mvc:View controllerName="industry.gov.au.fi.arinv.controller.Detail" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}"
+		title="{parts:['UId','i18n>FormNewRequest'], formatter:'.formatter.getDetailViewTitle' }" busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+		<semantic:content>
+			<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter id="iconTabBarFilterDetails" icon="sap-icon://document" tooltip="{i18n>detailIconTabBarInfo}">
+						<VBox class="sapUiSmallMargin">
+							<RadioButtonGroup columns="3" width="100%" valueState="Success" select="onFormTypeSelect">
+								<RadioButton groupName="FTYPE" id="rb1" selected="{= ${InvType} === '1' ? true: false }" text="Invoice Request" textAlign="Left"
+									editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>
+								<RadioButton groupName="FTYPE" id="rb2" selected="{= ${InvType} === '2' ? true: false }" text="Refund Request" textAlign="Left"
+									editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>
+								<RadioButton groupName="FTYPE" id="rb3" selected="{= ${InvType} === '3' ? true: false }" text="Adjustment Request" textAlign="Left"
+									editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>
+							</RadioButtonGroup>
+							<f:SimpleForm id="SimpleFormDetails" editable="true" layout="ResponsiveGridLayout" labelSpanXL="6" labelSpanL="6" labelSpanM="12"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
+								singleContainerFullSize="false" class="ZSimpleFormTitle">
+								<f:content>
+									<core:Title text=" "/>
+									<Label text="Date"/>
+									<DatePicker id="invoiceDate" displayFormat="short" width="8em"
+										value="{path:'Bldat', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true, UTC: true}}"
+										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>
+									<smartField:SmartLabel labelFor="companyCode" text="What Company do you want the Invoice raised"/>
+									<smartField:SmartField value="{Bukrs}" id="companyCode" width="5rem"
+										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"
+										maxLength="4" change="getCustomerDetails"/>
+									<smartField:SmartLabel labelFor="customerCode" text="SAP Customer ID"/>
+									<smartField:SmartField value="{Kunnr}" id="customerCode" width="7rem"
+										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}" maxLength="10" change="getCustomerDetails"/>
+										<Button id="fb5lnLink" press="onFb5lnLink" type="Emphasized" text="Open Line Items" width="10rem"/>
+									<Label text="Customer Name"/>
+									<Text text="{CustName}"/>
+									<Label text="Customer Address"/>
+									<Text text="{Addr1}"/>
+									<!--<Label text=""/>-->
+									<!--<Text text="{Addr2}"/>-->
+									<!--<Label text=""/>-->
+									<!--<Text text="{Addr3}"/>-->
+									<Label text="ABN"/>
+									<Text text="{Taxnum}"/>
+									<Label text="{path:'InvType', formatter:'.formatter.getFlagText'}"/>
+									<RadioButtonGroup columns="3" width="100%" valueState="Success" select="onValueExceedSelect">
+										<RadioButton groupName="INVFLG" id="rb4" selected="{= ${InvFlg} === '1' ? true: false }" text="Yes" textAlign="Left"
+											editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>
+										<RadioButton groupName="INVFLG" id="rb5" selected="{= ${InvFlg} === '2' ? true: false }" text="No" textAlign="Left"
+											editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>
+									</RadioButtonGroup>
+									<Label text="Records Management Reference Number"/>
+									<Input value="{RmRef}" width="100%" editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>
+									<core:Title text=" "/>
+									<Label text="Customer Reference"/>
+									<Input value="{Xblnr}" width="10rem" editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>
+									<Label text="{path:'InvType', formatter:'.formatter.getLabelForAmount'}"/>
+									<Input id="headerInvoiceAmount" value="{Wrbtr}" type="Number" placeholder="0.00" width="10rem"
+										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}" liveChange="onInvoiceAmountChange"
+										textAlign="Right"></Input>
+									
+									<Label text="{path:'InvType', formatter:'.formatter.getLabelForOriginalInvoice'}" labelFor="OriginalInvoiceNumber"/>
+									<Input id="OriginalInvoiceNumber" value="{OriginalInvoiceNumber}" width="13rem" editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}" visible="{= ${InvType} === '2' || ${InvType} === '3' ? true: false }"/>	
+									
+									<Label text="Invoice Delivery Method" labelFor="InvoiceDeliveryMethod" />
+									<Select id="InvoiceDeliveryMethod" selectedKey="{InvdelvMtd}" width="16rem" items="{/ZfiSrchDelMetSet}" 
+									enabled="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}" 
+									visible="{= ${InvType} === '2' ? false: true }" change="onDeliveryMethodChange">
+										<items>
+											<core:Item key="{Value}" text="{Text}"/>
+										</items>
+									</Select>
+									<Label text="Customer Email(from SAP master id)" labelFor="customerEmail"/>
+									<Input id="customerEmail" value="{EmailCust}" width="13rem" editable="false" visible="{= ${InvType} === '2' ? false: true }"/>
+									<Label text="Alternate Customer Email" labelFor="addCustomerEmail" />
+									<Input id="addCustomerEmail" value="{AddcustEmail}" width="13rem" editable="{= ((${InvdelvMtd} === 'EMTC') || (${InvdelvMtd} === 'MTRC')) &amp;&amp; (${detailView>/mode} === 'edit' || ${detailView>/mode} === 'create') &amp;&amp; ${Fstatus} !== 'REQ_SUBMIT' &amp;&amp; ${Fstatus} !== 'REQ_APPR' &amp;&amp; ${Fstatus} !== 'REQ_REJECT' }" visible="{= ${InvType} === '2' ? false: true }"/>	
+									
+									<Label text="Short Text"/>
+									<TextArea value="{Sgtxt}" maxLength="50" width="100%" rows="1"
+										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>									
+									<Label text="Long Text"/>
+									<TextArea value="{LnTxt}" maxLength="1333" width="100%" rows="2"
+										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>									
+									<smartField:SmartLabel labelFor="paymentTerm" text="Payment Terms" visible="{= ${InvType} === '2' ? false: true }"/>
+									<smartField:SmartField id="paymentTerm" value="{Zterm}" width="5rem" editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"  visible="{= ${InvType} === '2' ? false: true }"/>
+									<Label text="Refund Reason"/>
+									<Select id="refundReason" selectedKey="{RefundReason}" width="25rem" items="{/ZfiSrchRefRegSet}" enabled="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}" 
+									visible="{= ${InvType} === '2' ? true: false }" forceSelection="false">
+										<items>
+											<core:Item key="{Value}" text="{Text}"/>
+										</items>
+									</Select>
+									<Label text="Explanation" labelFor="refundCmtInput"/>
+									<Input id="refundCmtInput" value="{RefundCmnt}" editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}" visible="{= ${InvType} === '2' ? true: false }"/>
+									
+									<Label text="Reason for Adjustment" />
+									<Select id="reasonForAdjustment" selectedKey="{AdjReason}" width="20rem" items="{/ZfiSrchRegAdjSet}" enabled="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"
+									visible="{= ${InvType} === '3' ? true: false }" forceSelection="false">
+										<items>
+											<core:Item key="{Value}" text="{Text}"/>
+										</items>
+									</Select>									
+									<Label text="Explanation" labelFor="adjCmtInput"/>
+									<Input id="adjCmtInput" value="{AdjCmnt}" editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}" visible="{= ${InvType} === '3' ? true: false }"/>																		
+									
+								</f:content>
+							</f:SimpleForm>
+						</VBox>
+						
+						<Table id="lineItemsList" width="auto" noDataText="{i18n>detailLineItemTableNoDataText}"
+							busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin" updateFinished="onTableListUpdateFinished"
+							mode="{parts:['detailView>/mode','Fstatus'], formatter:'.formatter.getTableMode'}" delete="onDeleteTableItem" growing="false"
+							updateStarted="onTableLipstUpdateStarted" >
+
+							<headerToolbar>
+								<Toolbar id="lineItemsToolbar">
+									<Title id="lineItemsHeader" text="{detailView>/lineItemListTitle}"/>
+									<ToolbarSpacer/>
+									<Button text="Add Item" icon="sap-icon://add" press="onAddItem" type="Emphasized" tooltip="New Line Item"
+										visible="{= (${detailView>/mode} === 'edit' || ${detailView>/mode} === 'create') &amp;&amp; ${Fstatus} !== 'REQ_SUBMIT' &amp;&amp; ${Fstatus} !== 'REQ_APPR' &amp;&amp; ${Fstatus} !== 'REQ_REJECT' ? true: false}"/>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+<!--								<Column hAlign="Left">
+									<Text text="Item Number"/>
+								</Column>-->
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" popinDisplay="Inline" width="13%">
+									<Text text="GL Account"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" popinDisplay="Inline"  width="13%">
+									<Text text="Product ID"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" popinDisplay="Inline"  width="5%">
+									<Text text="Quantity"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" popinDisplay="Inline" width="5%">
+									<Text text="UoM"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" popinDisplay="Inline" width="10%">
+									<Text text="Amount"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" popinDisplay="Inline" width="13%">
+									<Text text="Cost Centre"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" popinDisplay="Inline" width="18%">
+									<Text text="WBS"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" popinDisplay="Inline" width="5%">
+									<Text text="Tax Code"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Short Text"/>
+								</Column>
+								
+							</columns>
+					
+						</Table>
+						<VBox class="sapUiSmallMargin" alignContent="End">
+							<f:SimpleForm id="SimpleFormTotals" editable="true" layout="ResponsiveGridLayout" labelSpanXL="10" labelSpanL="10" labelSpanM="12"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+								singleContainerFullSize="false" class="ZSimpleFormTitle">
+								<f:content>
+									<core:Title text=" "/>
+									<Label text="TOTAL INVOICE VALUE (GST EXCLUSIVE)"/>
+									<Input value="{TotalEx}" editable="false" placeholder="0.00" width="10rem"/>
+									<Label text="TOTAL GST"/>
+									<Input value="{Gst}" editable="false" placeholder="0.00" width="10rem"/>
+									<Label text="TOTAL INVOICE VALUE (GST INCLUSIVE)"/>
+									<Input value="{TotalIn}" editable="false" placeholder="0.00" width="10rem"/>									
+								</f:content>
+							</f:SimpleForm>
+						</VBox>
+					</IconTabFilter>
+					<IconTabFilter id="iconTabBarFilterComments" icon="sap-icon://comment" tooltip="{i18n>detailIconTabBarComments}">
+						<VBox class="sapUiSmallMargin">
+							<f:SimpleForm id="SimpleFormComments" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+								labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1"
+								singleContainerFullSize="false" class="ZSimpleFormTitle">
+								<f:content>
+									<core:Title text=" "/>
+									<Label text="Submission Comments"/>
+									<TextArea value="{SubmCmt}" maxLength="255" width="100%" rows="3"
+										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>
+									<Label text="Submitted By"/>
+									<Input value="{InvoiceDefaults/SubmittedBy}" width="100%" editable="false"/>
+									<Label text="Submission Date"/>
+									<DatePicker id="SubmitDate" displayFormat="short" width="8em"
+										value="{path:'SubmDt', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}" editable="false"/>
+									<Label/><Text/>
+									<Label text="Approver Comments"/>
+									<TextArea value="{ApprCmt}" id="apprCommentsArea" maxLength="255" width="100%" rows="3" editable="{= ${Fstatus} === 'REQ_SUBMIT' &amp;&amp; ${InvoiceDefaults/Approver} === 'Y' ? true: false}"/>
+									<Label text="Approved/Rejected By"/>
+									<Input id="ActionedBy" value="{InvoiceDefaults/ActionedBy}" width="100%" editable="false"/>
+									<Label text="Approval/Rejection Date"/>
+									<DatePicker id="ApprDt" displayFormat="short" width="8em"
+										value="{path:'ApproveDate', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}" editable="false"/>
+								</f:content>
+							</f:SimpleForm>
+						</VBox>
+					</IconTabFilter>
+					<IconTabFilter id="iconTabBarFilterAttachments" icon="sap-icon://attachment" tooltip="{i18n>detailIconTabBarAttachments}">
+						<UploadCollection id="InvoiceAttachmentsCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="false"
+							sameFilenameAllowed="false" noDataText="Please ensure all supporting documents are attached with the submission"
+							instantUpload="false" uploadUrl="/sap/opu/odata/sap/ZFI_AR_INVOICE_SRV/InvoiceAttachmentsentitySet/" change="onUploadChange"
+							beforeUploadStarts="onBeforeUploadFile" uploadComplete="onUploadComplete" fileDeleted="onFileDeleted"  
+							filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
+							items="{ path: 'Attachments', sorter: [{ path: 'Name', descending: false, group: false }] }">
+							<items>
+								<UploadCollectionItem documentId="{Name}" fileName="{Filename}"
+									url="{ parts: ['UId', 'Line'], formatter: '.formatter.buildFileGetUrl' }" visibleEdit="false" 
+									visibleDelete="false"
+									 >
+									<attributes>
+										<ObjectAttribute title="Creation Time" text="{path:'Creationtime', formatter: '.formatter.getDateAndTime'}"/>
+										<ObjectAttribute title="File Size" text="{path:'Filesize',formatter: '.formatter.removeLeadingZeroes'} KB"/>
+									</attributes>
+								</UploadCollectionItem>
+							</items>
+						</UploadCollection>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+		<!--<semantic:customHeaderContent>-->
+		<!--	<Button icon="sap-icon://hint" type="Emphasized"-->
+		<!--		press="onMessagePopoverPress"/>-->
+		<!--</semantic:customHeaderContent>-->
+		<semantic:customFooterContent>
+			<Button icon="sap-icon://alert" text="{=${message>/}.length}" visible="{=${message>/}.length > 0}" type="Emphasized"
+				press="onMessagePopoverPress"/>
+			<ToolbarSpacer/>
+			<Button id="editButton" press="onEdit" text="{= ${Fstatus} !== 'REQ_SUBMIT' ? 'Edit' : 'Add Attachment'}" type="Emphasized"
+				visible="{= ${detailView>/mode} === 'display' &amp;&amp; (${Fstatus} !== 'REQ_REJECT' &amp;&amp; ${Fstatus} !== 'REQ_APPR' &amp;&amp; ${Fstatus} !== 'REQ_SUBMIT' || ${InvoiceDefaults/Approver} === 'Y') ? true: false}"/>
+			<Button id="calculateButton" press="onCalculateInvoice" text="Calculate Invoice" type="Emphasized"
+				visible="{= (${detailView>/mode} === 'edit' || ${detailView>/mode} === 'create') &amp;&amp; ${Fstatus} !== 'REQ_APPR' &amp;&amp; ${Fstatus} !== 'REQ_REJECT' &amp;&amp; ${Fstatus} !== 'REQ_SUBMIT' ? true: false}"/>				
+			<Button id="saveButton" press="onSave" text="Save" type="Emphasized"
+				visible="{= (${detailView>/mode} === 'edit' || ${detailView>/mode} === 'create') &amp;&amp; ${Fstatus} !== 'REQ_APPR' &amp;&amp; ${Fstatus} !== 'REQ_REJECT' ? true: false}"/>
+			<Button id="submitButton" press="onSubmitRequest" text="Submit" type="Accept"
+				visible="{= (${detailView>/mode} === 'edit' || ${detailView>/mode} === 'create') &amp;&amp; ${Fstatus} !== 'REQ_SUBMIT' &amp;&amp; ${Fstatus} !== 'REQ_APPR' &amp;&amp; ${Fstatus} !== 'REQ_REJECT' ? true: false}"/>
+			<Button id="approveButton" press="onApproveRequest" text="Approve" type="Accept"
+				visible="{= ${Fstatus} === 'REQ_SUBMIT' &amp;&amp; ${InvoiceDefaults/Approver} === 'Y' ? true: false}"/>
+			<Button id="RejectButton" press="onRejectRequest" text="Reject" type="Reject"
+				visible="{= ${Fstatus} === 'REQ_SUBMIT' &amp;&amp; ${InvoiceDefaults/Approver} === 'Y' ? true: false}"/>
+			<Button id="cancelButton" press="onCancel" text="Cancel" type="Reject"
+				visible="{= ${detailView>/mode} === 'edit' || ${detailView>/mode} === 'create' ? true: false}"/>
+		</semantic:customFooterContent>
+	</semantic:DetailPage>
+</mvc:View>

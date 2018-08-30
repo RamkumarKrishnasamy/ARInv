@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:Reference
+		Uri="http://localhost:8080/webidedispatcher/destinations/DE3/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='DE3CLNT300_TRUST')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Common.v1"/></edmx:Reference>
+	<edmx:Reference
+		Uri="http://localhost:8080/webidedispatcher/destinations/DE3/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='DE3CLNT300_TRUST')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="Org.OData.Core.V1"/></edmx:Reference>
+	<edmx:Reference
+		Uri="http://localhost:8080/webidedispatcher/destinations/DE3/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='DE3CLNT300_TRUST')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Common.v1"/></edmx:Reference>
+	<edmx:Reference
+		Uri="http://localhost:8080/webidedispatcher/destinations/DE3/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='DE3CLNT300_TRUST')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="Org.OData.Core.V1"/></edmx:Reference>
+	<edmx:Reference
+		Uri="http://localhost:8080/webidedispatcher/destinations/DE3/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='DE3CLNT300_TRUST')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.UI.v1"/></edmx:Reference>
+	<edmx:Reference
+		Uri="http://localhost:8080/webidedispatcher/destinations/DE3/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='DE3CLNT300_TRUST')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZFI_Ar_INVOICE_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="InvoiceDefaults" sap:content-version="1">
+				<Key><PropertyRef Name="u_id"/></Key><Property Name="u_id" Type="Edm.String" Nullable="false"/><Property Name="FinalAttachSeq" Type="Edm.Int32" Nullable="false"/><Property Name="FinalLineItem" Type="Edm.String" Nullable="false" MaxLength="3"/><Property Name="ActionedBy" Type="Edm.String" Nullable="false" MaxLength="40"/><Property Name="SubmittedBy" Type="Edm.String" Nullable="false" MaxLength="40"/><Property Name="SubmittedTo" Type="Edm.String" Nullable="false" MaxLength="40"/><Property Name="Approver" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="ApReqVisible" Type="Edm.String" Nullable="false" MaxLength="2"/></EntityType>
+			<EntityType Name="ZfiShProductCode" sap:content-version="1">
+				<Key><PropertyRef Name="ZfiProductCode"/></Key><Property Name="ZfiProductCode" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Product Code"/><Property Name="Hkont" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="G/L"/><Property Name="ZfiCodeDesc" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Product Code Desc"/><Property Name="TaxCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Tax Code"/></EntityType>
+			<EntityType Name="ZfiSrchRefReg" sap:content-version="1">
+				<Key><PropertyRef Name="Value"/></Key><Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Object Type"/><Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Char 70"/><Property Name="DOMNAME" Type="Edm.String" Nullable="false" MaxLength="30"/></EntityType>
+			<EntityType Name="ZfiSrchDelMet" sap:content-version="1">
+				<Key><PropertyRef Name="Value"/></Key><Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Invoice Delivery Method"/><Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript."/><Property Name="DOMNAME" Type="Edm.String" Nullable="false" MaxLength="30"/></EntityType>
+			<EntityType Name="ZfiSrchRegAdj" sap:content-version="1">
+				<Key><PropertyRef Name="Value"/></Key><Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Object Type"/><Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Obj. Type Text"/><Property Name="DOMNAME" Type="Edm.String" Nullable="false" MaxLength="30"/></EntityType>
+			<EntityType Name="InvoiceHeaderentity" sap:content-version="1">
+				<Key><PropertyRef Name="UId"/></Key><Property Name="Belnr02" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Document Number"/><Property Name="Fstatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Form Status"/><Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Client"/><Property Name="UId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Requisition ID"/><Property Name="InvType" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Invoice Type"/><Property Name="Belnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Document Number"/><Property Name="Blart" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Doc.Type Customers"/><Property Name="Bldat" Type="Edm.DateTime" Precision="7" sap:label="Document Date"/><Property Name="Bukrs" Type="Edm.String" MaxLength="4" sap:label="Company Code"/><Property Name="Kunnr" Type="Edm.String" MaxLength="10" sap:label="Customer"/><Property Name="InvFlg" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Invoice value exceed flag"/><Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name"/><Property Name="Name2" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name 2"/><Property Name="CustName" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Conv. name"/><Property Name="HouseNum1" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="House Number"/><Property Name="Street" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Street"/><Property Name="City1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="City"/><Property Name="PostCode1" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Postal Code"/><Property Name="Addr1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="City"/><Property Name="Addr2" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="District"/><Property Name="Addr3" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="District"/><Property Name="Taxnum" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Tax Number"/><Property Name="SuppDoc" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Supporting Doc path"/><Property Name="RmRef" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Records Management Reference Number"/><Property Name="Xblnr" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Reference"/><Property Name="Wrbtr" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="2" sap:label="Amount"/><Property Name="RefundReason" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Refund Reason"/><Property Name="RefundCmnt" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Text"/><Property Name="AdjReason" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Reason for Adjustment"/><Property Name="AdjCmnt" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Text"/><Property Name="Zterm" Type="Edm.String" MaxLength="4" sap:label="Terms of Payment Key"/><Property Name="InvdelvMtd" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Invoice Delivery Method"/><Property Name="EmailCust" Type="Edm.String" Nullable="false" MaxLength="241" sap:label="E-Mail Address"/><Property Name="AddcustEmail" Type="Edm.String" Nullable="false" MaxLength="241" sap:label="E-Mail Address"/><Property Name="EmailRequest" Type="Edm.String" Nullable="false" MaxLength="241" sap:label="E-Mail Address"/><Property Name="Sgtxt" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Text"/><Property Name="LnTxt" Type="Edm.String" Nullable="false" MaxLength="1333" sap:label="Long Text"/><Property Name="TotalEx" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="2" sap:label="Amount"/><Property Name="Gst" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="2" sap:label="Amount"/><Property Name="TotalIn" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="2" sap:label="Amount"/><Property Name="SubmCmt" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Text"/><Property Name="SubmBy" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Name 1"/><Property Name="ApprCmt" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Text"/><Property Name="ApprBy" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Name 1"/><Property Name="SubmDt" Type="Edm.DateTime" Precision="7" sap:label="Date"/><Property Name="ApprDt" Type="Edm.DateTime" Precision="7" sap:label="Date"/><Property Name="Objtyp" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Ref. procedure"/><Property Name="Objkey" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Object key"/><NavigationProperty Name="InvoiceDefaults" Relationship="ZFI_Ar_INVOICE_SRV.InvoiceHeaderToDeafults"
+					FromRole="FromRole_InvoiceHeaderToDeafults" ToRole="ToRole_InvoiceHeaderToDeafults"/><NavigationProperty Name="Items" Relationship="ZFI_Ar_INVOICE_SRV.InvoiceHeaderToInvoiceItem" FromRole="FromRole_InvoiceHeaderToInvoiceItem"
+					ToRole="ToRole_InvoiceHeaderToInvoiceItem"/><NavigationProperty Name="Attachments" Relationship="ZFI_Ar_INVOICE_SRV.InvoiceHeaderToAttachments"
+					FromRole="FromRole_InvoiceHeaderToAttachments" ToRole="ToRole_InvoiceHeaderToAttachments"/></EntityType>
+			<EntityType Name="InvoiceItemsentitySet01" sap:content-version="1">
+				<Key><PropertyRef Name="UId"/><PropertyRef Name="Buzei"/></Key><Property Name="UId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Requisition ID"/><Property Name="Buzei" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Line item"/><Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Client"/><Property Name="Hkont" Type="Edm.String" MaxLength="10" sap:label="G/L Account"/><Property Name="ZfiProductCode" Type="Edm.String" MaxLength="12" sap:label="Product Code"/><Property Name="Menge" Type="Edm.Decimal" Precision="13" Scale="2" sap:label="Quantity"/><Property Name="Meins" Type="Edm.String" MaxLength="3" sap:label="Base Unit" sap:semantics="unit-of-measure"/><Property Name="Wrbtr" Type="Edm.Decimal" Precision="14" Scale="2" sap:label="Amount"/><Property Name="Kostl" Type="Edm.String" MaxLength="10" sap:label="Cost Center"/><Property Name="Pspnr" Type="Edm.String" MaxLength="24" sap:label="WBS Element"/><Property Name="Mwskz" Type="Edm.String" MaxLength="2" sap:label="Tax Code"/><Property Name="Sgtxt" Type="Edm.String" MaxLength="50" sap:label="Text"/><Property Name="Posid" Type="Edm.String" MaxLength="24" sap:label="WBS element"/></EntityType>
+			<EntityType Name="InvoiceAttachmentsentitySet02" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="UId"/><PropertyRef Name="Belnr"/><PropertyRef Name="Line"/></Key><Property Name="UId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Requisition ID"/><Property Name="Belnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Document Number"/><Property Name="Line" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Number of Attachment"/><Property Name="Name" Type="Edm.String" Nullable="false" sap:label="Attachment Name"/><Property Name="Filename" Type="Edm.String" Nullable="false" sap:label="Local File for Upload/Download"/><Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="64" sap:label="MIME type"/><Property Name="Filesize" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Length of file"/><Property Name="Creationtime" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Local TS"/><Property Name="Modificationtime" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Local TS"/><Property Name="Description" Type="Edm.String" Nullable="false" sap:label="Description"/><Property Name="Data" Type="Edm.Binary" Nullable="false" sap:label="Contents"/></EntityType>
+			<EntityType Name="CustomerDetail" sap:content-version="1">
+				<Key><PropertyRef Name="Kunnr"/><PropertyRef Name="Bukrs"/></Key><Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="CustName" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Conv. name"/><Property Name="Addr1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="City"/><Property Name="Addr2" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="District"/><Property Name="Addr3" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="District"/><Property Name="Taxnum" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Tax Number"/><Property Name="EmailCust" Type="Edm.String" Nullable="false" MaxLength="241" sap:label="E-Mail Address"/><Property Name="EmailRequest" Type="Edm.String" Nullable="false" MaxLength="241" sap:label="E-Mail Address"/><Property Name="Zterm" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Terms of Payment Key"/></EntityType>
+			<EntityType Name="ReturnURL" sap:content-version="1">
+				<Key><PropertyRef Name="url"/></Key><Property Name="url" Type="Edm.String" Nullable="false" MaxLength="512"/></EntityType>
+			<EntityType Name="InvoiceAction" sap:content-version="1">
+				<Key><PropertyRef Name="UId"/></Key><Property Name="UId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Request ID"/><Property Name="Action" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Character Field Length = 10"/></EntityType>
+			<EntityType Name="HT001" sap:content-version="1">
+				<Key><PropertyRef Name="Bukrs"/></Key><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Butxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Company Name"/><Property Name="Ort01" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Waers" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:semantics="currency-code"/></EntityType>
+			<EntityType Name="ZmmVendorSearch" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/><PropertyRef Name="Bukrs"/></Key><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Stras" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Street"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Altkn" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Prev.Acct No."/><Property Name="Ktokk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Account group"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Sperr" Type="Edm.Boolean" Nullable="false" sap:label="Posting Block" sap:filterable="false"/><Property Name="Loevm" Type="Edm.Boolean" Nullable="false" sap:label="Deletion flag" sap:filterable="false"/><Property Name="SperrB" Type="Edm.Boolean" Nullable="false" sap:label="Co.code post.block" sap:filterable="false"/><Property Name="LoevmB" Type="Edm.Boolean" Nullable="false" sap:label="Co.cde deletion flag" sap:filterable="false"/><Property Name="Stceg" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="ABN"/><Property Name="Sort1" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Search Term 1"/><Property Name="Sort2" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Search Term 2"/><Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No."/><Property Name="Konzs" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Group"/></EntityType>
+			<EntityType Name="ShT007a" sap:content-version="1">
+				<Key><PropertyRef Name="Kalsm"/><PropertyRef Name="Mwskz"/></Key><Property Name="Kalsm" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Procedure"/><Property Name="Mwskz" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Tax Code"/><Property Name="Text1" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Description"/></EntityType>
+			<EntityType Name="Kreda" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/></Key><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Pstlz" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Postal Code"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/></EntityType>
+			<EntityType Name="Kredi" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/><PropertyRef Name="Bukrs"/></Key><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/></EntityType>
+			<EntityType Name="Kredk" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/><PropertyRef Name="Bukrs"/></Key><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Pstlz" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Postal Code"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/></EntityType>
+			<EntityType Name="Prpmk" sap:content-version="1">
+				<Key><PropertyRef Name="Posid"/></Key><Property Name="Poski" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Short ID"/><Property Name="Posid" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="WBS element"/><Property Name="Post1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/></EntityType>
+			<EntityType Name="Prpmz" sap:content-version="1">
+				<Key><PropertyRef Name="Posid"/></Key><Property Name="Verna" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Pers.Resp.Name"/><Property Name="Vernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Pers.Resp.No."/><Property Name="Posid" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="WBS element"/></EntityType>
+			<EntityType Name="Prpma" sap:content-version="1">
+				<Key><PropertyRef Name="Posid"/></Key><Property Name="Posid" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="WBS element"/><Property Name="Post1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/></EntityType>
+			<EntityType Name="Prpmb" sap:content-version="1">
+				<Key><PropertyRef Name="Posid"/></Key><Property Name="Posid" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="WBS element"/><Property Name="Post1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/></EntityType>
+			<EntityType Name="Prpmc" sap:content-version="1">
+				<Key><PropertyRef Name="Posid"/></Key><Property Name="Posid" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="WBS element"/></EntityType>
+			<EntityType Name="IaomCprojectsWbs" sap:content-version="1">
+				<Key><PropertyRef Name="Posid"/></Key><Property Name="Posid" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="WBS element"/><Property Name="ProjElementId" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="Project Element No."/><Property Name="BezeichPrjElem" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Project Element Name"/><Property Name="RespOrgUnit" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Org. Responsible"/><Property Name="Priority" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Priority"/><Property Name="ProType" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Project Type"/><Property Name="Cause" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Cause"/><Property Name="Grouping" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Grouping"/><Property Name="SearchField" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Search Field"/><Property Name="TempExternalId" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="Template Number"/><Property Name="Customer" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Sold-to party"/></EntityType>
+			<EntityType Name="Kostn" sap:content-version="1">
+				<Key><PropertyRef Name="Kostl"/></Key><Property Name="Kostl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Cost Center"/><Property Name="Kokrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="CO Area"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Kosar" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="CCtr Category"/><Property Name="Verak" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Person Resp."/><Property Name="VerakUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Responsible"/><Property Name="Mctxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Short Text"/><Property Name="Spras" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language"/><Property Name="Datab" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Valid From"/><Property Name="Datbi" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Valid To"/></EntityType>
+			<EntityType Name="Kostd" sap:content-version="1">
+				<Key><PropertyRef Name="Kostl"/></Key><Property Name="Kostl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Cost Center"/><Property Name="Kokrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="CO Area"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Kosar" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="CCtr Category"/><Property Name="Verak" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Person Resp."/><Property Name="VerakUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Responsible"/><Property Name="Mctxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Short Text"/><Property Name="Spras" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language"/><Property Name="Datab" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Valid From"/><Property Name="Datbi" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Valid To"/></EntityType>
+			<EntityType Name="Kosts" sap:content-version="1">
+				<Key><PropertyRef Name="Kostl"/></Key><Property Name="Mctxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Short Text"/><Property Name="Spras" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language"/><Property Name="Kokrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="CO Area"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Kosar" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="CCtr Category"/><Property Name="Kostl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Cost Center"/><Property Name="Datab" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Valid From"/><Property Name="Datbi" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Valid To"/></EntityType>
+			<EntityType Name="JvhPrpmg" sap:content-version="1">
+				<Key><PropertyRef Name="Posid"/></Key><Property Name="Pbukr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company code"/><Property Name="Posid" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="WBS element"/><Property Name="Post1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/><Property Name="Vname" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Joint venture"/><Property Name="Recid" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Recovery Indic."/><Property Name="Etype" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Equity type"/><Property Name="Otype" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="JV Project Type"/><Property Name="Jibcl" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="JIB/JIBE Class"/><Property Name="Jibsa" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="JIB/JIBE SbClsA"/></EntityType>
+			<EntityType Name="GlAcctCcNo" sap:content-version="1">
+				<Key><PropertyRef Name="Saknr"/></Key><Property Name="Saknr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="G/L Account"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Txt50" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Long Text"/></EntityType>
+			<EntityType Name="GlAcctCaNo" sap:content-version="1">
+				<Key><PropertyRef Name="Saknr"/><PropertyRef Name="Ktopl"/></Key><Property Name="Saknr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="G/L Account"/><Property Name="Ktopl" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Chart of Accts"/><Property Name="Txt50" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Long Text"/></EntityType>
+			<EntityType Name="GlAcctCaText" sap:content-version="1">
+				<Key><PropertyRef Name="Ktopl"/><PropertyRef Name="Saknr"/></Key><Property Name="Txt50" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Long Text"/><Property Name="Ktopl" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Chart of Accts"/><Property Name="Saknr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="G/L Account"/></EntityType>
+			<EntityType Name="GlAcctCaFlags" sap:content-version="1">
+				<Key><PropertyRef Name="Ktopl"/><PropertyRef Name="Saknr"/></Key><Property Name="Txt50" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Long Text"/><Property Name="Ktopl" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Chart of Accts"/><Property Name="Xloev" Type="Edm.Boolean" Nullable="false" sap:label="Deletion Flag"/><Property Name="Xspeb" Type="Edm.Boolean" Nullable="false" sap:label="Posting Block"/><Property Name="Xspea" Type="Edm.Boolean" Nullable="false" sap:label="Creation Block"/><Property Name="Xspep" Type="Edm.Boolean" Nullable="false" sap:label="Planning Block"/><Property Name="Saknr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="G/L Account"/></EntityType>
+			<EntityType Name="GlAcctCcText" sap:content-version="1">
+				<Key><PropertyRef Name="Saknr"/></Key><Property Name="Txt50" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Long Text"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Saknr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="G/L Account"/></EntityType>
+			<EntityType Name="GlAcctCcFlags" sap:content-version="1">
+				<Key><PropertyRef Name="Bukrs"/><PropertyRef Name="Xloev"/><PropertyRef Name="Xspeb"/><PropertyRef Name="Saknr"/></Key><Property Name="Txt50" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Long Text"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="XloevKtp" Type="Edm.Boolean" Nullable="false" sap:label="Del.Flag for Ch/Acct"/><Property Name="Xloev" Type="Edm.Boolean" Nullable="false" sap:label="Deletion Flag"/><Property Name="XspebKtp" Type="Edm.Boolean" Nullable="false" sap:label="ChtAcct Post.Blk"/><Property Name="Xspeb" Type="Edm.Boolean" Nullable="false" sap:label="Posting Block"/><Property Name="Saknr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="G/L Account"/></EntityType>
+			<EntityType Name="Debin" sap:content-version="1">
+				<Key><PropertyRef Name="Kunnr"/><PropertyRef Name="Bukrs"/></Key><Property Name="Altkn" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Prev.Acct No."/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/></EntityType>
+			<EntityType Name="Debia" sap:content-version="1">
+				<Key><PropertyRef Name="Kunnr"/></Key><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Pstlz" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Postal Code"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer"/></EntityType>
+			<EntityType Name="SakoCore" sap:content-version="1">
+				<Key><PropertyRef Name="Saknr"/></Key><Property Name="Saknr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="G/L Account"/><Property Name="Txt50" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Long Text"/><Property Name="Spras" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language"/><Property Name="Ktopl" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Chart of Accts"/></EntityType>
+			<EntityType Name="HT006" sap:content-version="1">
+				<Key><PropertyRef Name="Msehi"/></Key><Property Name="Mseh3" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Commercial"/><Property Name="Msehi" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Int. meas. unit" sap:semantics="unit-of-measure"/><Property Name="Msehl" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Unit text"/><Property Name="Txdim" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Dimension text"/></EntityType>
+			<EntityType Name="ShLordZterm" sap:content-version="1">
+				<Key><PropertyRef Name="Zterm"/></Key><Property Name="Zterm" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Payt terms"/><Property Name="ZtermT" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Description"/></EntityType>
+			<EntityType Name="Prpmp" sap:content-version="1">
+				<Key><PropertyRef Name="Posid"/><PropertyRef Name="Pspid"/></Key><Property Name="Post1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description"/><Property Name="Posid" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="WBS element"/><Property Name="Poski" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Short ID"/><Property Name="Pspid" Type="Edm.String" Nullable="false" MaxLength="24" sap:label="Project def."/></EntityType>
+			<EntityType Name="ZfiKostnDepartment" sap:content-version="1">
+				<Key><PropertyRef Name="Kostl"/></Key><Property Name="Kostl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Cost Center"/><Property Name="Kokrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="CO Area"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Kosar" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="CCtr Category"/><Property Name="Verak" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Person Resp."/><Property Name="VerakUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Responsible"/><Property Name="Mctxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Short Text"/><Property Name="Spras" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language"/><Property Name="Datab" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Valid From"/><Property Name="Datbi" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Valid To"/><Property Name="Abtei" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Department"/></EntityType>
+			<EntityType Name="Kredl" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/></Key><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/></EntityType>
+			<EntityType Name="Kredp" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/><PropertyRef Name="Bukrs"/></Key><Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No."/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor" sap:filterable="false"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/></EntityType>
+			<EntityType Name="Kredt" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/></Key><Property Name="Stcd1" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Tax Number 1"/><Property Name="Stcd2" Type="Edm.String" Nullable="false" MaxLength="11" sap:label="Tax Number 2"/><Property Name="Stcd3" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Tax Number 3"/><Property Name="Stcd4" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Tax Number 4"/><Property Name="Stcd5" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Tax Number 5"/><Property Name="Stceg" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="ABN"/><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/></EntityType>
+			<EntityType Name="Krede" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/></Key><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Pstlz" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Postal Code"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/><Property Name="Ekorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Purchasing org."/><Property Name="Bolre" Type="Edm.Boolean" Nullable="false" sap:label="Subseq. sett."/></EntityType>
+			<EntityType Name="Kredm" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/></Key><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Material"/><Property Name="Idnlf" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Supp. Mat. No."/><Property Name="Eiorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Purchasing org."/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/><Property Name="Infnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing info rec."/><Property Name="Esokz" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Infotype"/><Property Name="Ewerk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Plant"/></EntityType>
+			<EntityType Name="Kredw" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/></Key><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Pstlz" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Postal Code"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Plant"/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/></EntityType>
+			<EntityType Name="FmKrediFmpsois" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/></Key><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/><Property Name="Psoea" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Revnue Type"/><Property Name="Psois" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="SLAPrepr.Proced"/></EntityType>
+			<EntityType Name="Mpnkred1" sap:content-version="1">
+				<Key><PropertyRef Name="Lifnr"/></Key><Property Name="Emnfr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="External manuf."/><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/><Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Name"/></EntityType>
+			<EntityType Name="Relifnrcn" sap:content-version="1">
+				<Key><PropertyRef Name="Bukrs"/><PropertyRef Name="Recnnr"/></Key><Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Recnnr" Type="Edm.String" Nullable="false" MaxLength="13" sap:label="Contract"/><Property Name="Recntype" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Contract Type"/><Property Name="Recnbeg" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Contract Start"/><Property Name="Recnendabs" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="End of Term"/><Property Name="Recnnotper" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Notice Per"/><Property Name="McName1" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Name 1/last nm"/><Property Name="Recntxt" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Contract name"/><Property Name="NameLast" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Last name"/><Property Name="NameFirst" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="First name"/><Property Name="NameOrg1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name 1"/><Property Name="NameOrg2" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name 2"/></EntityType>
+			<EntityType Name="Debid" sap:content-version="1">
+				<Key><PropertyRef Name="Kunnr"/><PropertyRef Name="Bukrs"/></Key><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Pstlz" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Postal Code"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/></EntityType>
+			<EntityType Name="Debie" sap:content-version="1">
+				<Key><PropertyRef Name="Kunnr"/><PropertyRef Name="Bukrs"/></Key><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/></EntityType>
+			<EntityType Name="Debil" sap:content-version="1">
+				<Key><PropertyRef Name="Kunnr"/></Key><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Sortl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Search term"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Mcod3" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="City"/><Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer"/></EntityType>
+			<EntityType Name="Debip" sap:content-version="1">
+				<Key><PropertyRef Name="Kunnr"/><PropertyRef Name="Bukrs"/></Key><Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No."/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/></EntityType>
+			<EntityType Name="Debit" sap:content-version="1">
+				<Key><PropertyRef Name="Kunnr"/></Key><Property Name="Stcd1" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Tax Number 1"/><Property Name="Stcd2" Type="Edm.String" Nullable="false" MaxLength="11" sap:label="Tax Number 2"/><Property Name="Stcd3" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Tax Number 3"/><Property Name="Stcd4" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Tax Number 4"/><Property Name="Stceg" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="ABN"/><Property Name="Land1" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/><Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Name"/><Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer"/><Property Name="Stcd5" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Tax Number 5"/></EntityType>
+			<EntityType Name="Debix" sap:content-version="1">
+				<Key><PropertyRef Name="Kunnr"/></Key><Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer"/><Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name"/><Property Name="Firstname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="First name"/><Property Name="Street" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Street"/><Property Name="HouseNum1" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="House Number"/><Property Name="PostCode1" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Postal Code"/><Property Name="City1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="City"/><Property Name="Sort1" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Search Term 1"/><Property Name="Sort2" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Search Term 2"/><Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country"/></EntityType>
+			<EntityType Name="JvhVptnr" sap:content-version="1">
+				<Key><PropertyRef Name="Partn"/><PropertyRef Name="Bukrs"/></Key><Property Name="Partn" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Partner"/><Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code"/><Property Name="Vname" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Joint venture"/><Property Name="Egrup" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Equity group"/></EntityType>
+			<Association Name="InvoiceHeaderToInvoiceItem" sap:content-version="1"><End Type="ZFI_Ar_INVOICE_SRV.InvoiceHeaderentity" Multiplicity="1" Role="FromRole_InvoiceHeaderToInvoiceItem"/><End Type="ZFI_Ar_INVOICE_SRV.InvoiceItemsentitySet01" Multiplicity="*" Role="ToRole_InvoiceHeaderToInvoiceItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_InvoiceHeaderToInvoiceItem"><PropertyRef Name="UId"/></Principal>
+					<Dependent Role="ToRole_InvoiceHeaderToInvoiceItem"><PropertyRef Name="UId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InvoiceHeaderToAttachments" sap:content-version="1"><End Type="ZFI_Ar_INVOICE_SRV.InvoiceHeaderentity" Multiplicity="1" Role="FromRole_InvoiceHeaderToAttachments"/><End Type="ZFI_Ar_INVOICE_SRV.InvoiceAttachmentsentitySet02" Multiplicity="*" Role="ToRole_InvoiceHeaderToAttachments"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_InvoiceHeaderToAttachments"><PropertyRef Name="UId"/></Principal>
+					<Dependent Role="ToRole_InvoiceHeaderToAttachments"><PropertyRef Name="UId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InvoiceHeaderToDeafults" sap:content-version="1"><End Type="ZFI_Ar_INVOICE_SRV.InvoiceHeaderentity" Multiplicity="1" Role="FromRole_InvoiceHeaderToDeafults"/><End Type="ZFI_Ar_INVOICE_SRV.InvoiceDefaults" Multiplicity="0..1" Role="ToRole_InvoiceHeaderToDeafults"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_InvoiceHeaderToDeafults"><PropertyRef Name="UId"/></Principal>
+					<Dependent Role="ToRole_InvoiceHeaderToDeafults"><PropertyRef Name="u_id"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZFI_Ar_INVOICE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="InvoiceDefaultsSet" EntityType="ZFI_Ar_INVOICE_SRV.InvoiceDefaults" sap:content-version="1"/><EntitySet Name="ZfiShProductCodeSet" EntityType="ZFI_Ar_INVOICE_SRV.ZfiShProductCode" sap:content-version="1"/><EntitySet Name="ZfiSrchRefRegSet" EntityType="ZFI_Ar_INVOICE_SRV.ZfiSrchRefReg" sap:content-version="1"/><EntitySet Name="ZfiSrchDelMetSet" EntityType="ZFI_Ar_INVOICE_SRV.ZfiSrchDelMet" sap:content-version="1"/><EntitySet Name="ZfiSrchRegAdjSet" EntityType="ZFI_Ar_INVOICE_SRV.ZfiSrchRegAdj" sap:content-version="1"/><EntitySet Name="InvoiceHeaderentitySet" EntityType="ZFI_Ar_INVOICE_SRV.InvoiceHeaderentity" sap:content-version="1"/><EntitySet Name="InvoiceItemsentitySet" EntityType="ZFI_Ar_INVOICE_SRV.InvoiceItemsentitySet01" sap:content-version="1"/><EntitySet Name="InvoiceAttachmentsentitySet" EntityType="ZFI_Ar_INVOICE_SRV.InvoiceAttachmentsentitySet02" sap:content-version="1"/><EntitySet Name="CustomerDetailSet" EntityType="ZFI_Ar_INVOICE_SRV.CustomerDetail" sap:content-version="1"/><EntitySet Name="ReturnURLCollection" EntityType="ZFI_Ar_INVOICE_SRV.ReturnURL" sap:content-version="1"/><EntitySet Name="InvoiceActionSet" EntityType="ZFI_Ar_INVOICE_SRV.InvoiceAction" sap:content-version="1"/><EntitySet Name="InvoiceAction001Set" EntityType="ZFI_Ar_INVOICE_SRV.InvoiceAction" sap:content-version="1"/><EntitySet Name="HT001Set" EntityType="ZFI_Ar_INVOICE_SRV.HT001" sap:content-version="1"/><EntitySet Name="ZmmVendorSearchSet" EntityType="ZFI_Ar_INVOICE_SRV.ZmmVendorSearch" sap:content-version="1"/><EntitySet Name="ShT007aSet" EntityType="ZFI_Ar_INVOICE_SRV.ShT007a" sap:content-version="1"/><EntitySet Name="KredaSet" EntityType="ZFI_Ar_INVOICE_SRV.Kreda" sap:content-version="1"/><EntitySet Name="KrediSet" EntityType="ZFI_Ar_INVOICE_SRV.Kredi" sap:content-version="1"/><EntitySet Name="KredkSet" EntityType="ZFI_Ar_INVOICE_SRV.Kredk" sap:content-version="1"/><EntitySet Name="PrpmkSet" EntityType="ZFI_Ar_INVOICE_SRV.Prpmk" sap:content-version="1"/><EntitySet Name="PrpmzSet" EntityType="ZFI_Ar_INVOICE_SRV.Prpmz" sap:content-version="1"/><EntitySet Name="PrpmaSet" EntityType="ZFI_Ar_INVOICE_SRV.Prpma" sap:content-version="1"/><EntitySet Name="PrpmbSet" EntityType="ZFI_Ar_INVOICE_SRV.Prpmb" sap:content-version="1"/><EntitySet Name="PrpmcSet" EntityType="ZFI_Ar_INVOICE_SRV.Prpmc" sap:content-version="1"/><EntitySet Name="IaomCprojectsWbsSet" EntityType="ZFI_Ar_INVOICE_SRV.IaomCprojectsWbs" sap:content-version="1"/><EntitySet Name="KostnSet" EntityType="ZFI_Ar_INVOICE_SRV.Kostn" sap:content-version="1"/><EntitySet Name="KostdSet" EntityType="ZFI_Ar_INVOICE_SRV.Kostd" sap:content-version="1"/><EntitySet Name="KostsSet" EntityType="ZFI_Ar_INVOICE_SRV.Kosts" sap:content-version="1"/><EntitySet Name="JvhPrpmgSet" EntityType="ZFI_Ar_INVOICE_SRV.JvhPrpmg" sap:content-version="1"/><EntitySet Name="GlAcctCcNoSet" EntityType="ZFI_Ar_INVOICE_SRV.GlAcctCcNo" sap:content-version="1"/><EntitySet Name="GlAcctCaNoSet" EntityType="ZFI_Ar_INVOICE_SRV.GlAcctCaNo" sap:content-version="1"/><EntitySet Name="GlAcctCaTextSet" EntityType="ZFI_Ar_INVOICE_SRV.GlAcctCaText" sap:content-version="1"/><EntitySet Name="GlAcctCaFlagsSet" EntityType="ZFI_Ar_INVOICE_SRV.GlAcctCaFlags" sap:content-version="1"/><EntitySet Name="GlAcctCcTextSet" EntityType="ZFI_Ar_INVOICE_SRV.GlAcctCcText" sap:content-version="1"/><EntitySet Name="GlAcctCcFlagsSet" EntityType="ZFI_Ar_INVOICE_SRV.GlAcctCcFlags" sap:content-version="1"/><EntitySet Name="DebinSet" EntityType="ZFI_Ar_INVOICE_SRV.Debin" sap:content-version="1"/><EntitySet Name="DebiaSet" EntityType="ZFI_Ar_INVOICE_SRV.Debia" sap:content-version="1"/><EntitySet Name="SakoCoreSet" EntityType="ZFI_Ar_INVOICE_SRV.SakoCore" sap:content-version="1"/><EntitySet Name="HT006Set" EntityType="ZFI_Ar_INVOICE_SRV.HT006" sap:content-version="1"/><EntitySet Name="ShLordZtermSet" EntityType="ZFI_Ar_INVOICE_SRV.ShLordZterm" sap:content-version="1"/><EntitySet Name="PrpmpSet" EntityType="ZFI_Ar_INVOICE_SRV.Prpmp" sap:content-version="1"/><EntitySet Name="ZfiKostnDepartmentSet" EntityType="ZFI_Ar_INVOICE_SRV.ZfiKostnDepartment" sap:content-version="1"/><EntitySet Name="KredlSet" EntityType="ZFI_Ar_INVOICE_SRV.Kredl" sap:content-version="1"/><EntitySet Name="KredpSet" EntityType="ZFI_Ar_INVOICE_SRV.Kredp" sap:content-version="1"/><EntitySet Name="KredtSet" EntityType="ZFI_Ar_INVOICE_SRV.Kredt" sap:content-version="1"/><EntitySet Name="KredeSet" EntityType="ZFI_Ar_INVOICE_SRV.Krede" sap:content-version="1"/><EntitySet Name="KredmSet" EntityType="ZFI_Ar_INVOICE_SRV.Kredm" sap:content-version="1"/><EntitySet Name="KredwSet" EntityType="ZFI_Ar_INVOICE_SRV.Kredw" sap:content-version="1"/><EntitySet Name="FmKrediFmpsoisSet" EntityType="ZFI_Ar_INVOICE_SRV.FmKrediFmpsois" sap:content-version="1"/><EntitySet Name="Mpnkred1Set" EntityType="ZFI_Ar_INVOICE_SRV.Mpnkred1" sap:content-version="1"/><EntitySet Name="RelifnrcnSet" EntityType="ZFI_Ar_INVOICE_SRV.Relifnrcn" sap:content-version="1"/><EntitySet Name="DebidSet" EntityType="ZFI_Ar_INVOICE_SRV.Debid" sap:content-version="1"/><EntitySet Name="DebieSet" EntityType="ZFI_Ar_INVOICE_SRV.Debie" sap:content-version="1"/><EntitySet Name="DebilSet" EntityType="ZFI_Ar_INVOICE_SRV.Debil" sap:content-version="1"/><EntitySet Name="DebipSet" EntityType="ZFI_Ar_INVOICE_SRV.Debip" sap:content-version="1"/><EntitySet Name="DebitSet" EntityType="ZFI_Ar_INVOICE_SRV.Debit" sap:content-version="1"/><EntitySet Name="DebixSet" EntityType="ZFI_Ar_INVOICE_SRV.Debix" sap:content-version="1"/><EntitySet Name="JvhVptnrSet" EntityType="ZFI_Ar_INVOICE_SRV.JvhVptnr" sap:content-version="1"/>
+				<AssociationSet Name="InvoiceHeaderToInvoiceItemSet" Association="ZFI_Ar_INVOICE_SRV.InvoiceHeaderToInvoiceItem" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="InvoiceHeaderentitySet" Role="FromRole_InvoiceHeaderToInvoiceItem"/><End EntitySet="InvoiceItemsentitySet" Role="ToRole_InvoiceHeaderToInvoiceItem"/></AssociationSet>
+				<AssociationSet Name="InvoiceHeaderToAttachmentsSet" Association="ZFI_Ar_INVOICE_SRV.InvoiceHeaderToAttachments" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="InvoiceHeaderentitySet" Role="FromRole_InvoiceHeaderToAttachments"/><End EntitySet="InvoiceAttachmentsentitySet" Role="ToRole_InvoiceHeaderToAttachments"/></AssociationSet>
+				<AssociationSet Name="InvoiceHeaderToDeafultsSet" Association="ZFI_Ar_INVOICE_SRV.InvoiceHeaderToDeafults" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="InvoiceHeaderentitySet" Role="FromRole_InvoiceHeaderToDeafults"/><End EntitySet="InvoiceDefaultsSet" Role="ToRole_InvoiceHeaderToDeafults"/></AssociationSet>
+				<FunctionImport Name="GetCustomerDetails" ReturnType="ZFI_Ar_INVOICE_SRV.CustomerDetail" EntitySet="CustomerDetailSet" m:HttpMethod="GET"
+					sap:action-for="ZFI_Ar_INVOICE_SRV.CustomerDetail"><Parameter Name="Customer" Type="Edm.String" Mode="In" MaxLength="10"/><Parameter Name="Company" Type="Edm.String" Mode="In" MaxLength="4"/></FunctionImport>
+				<FunctionImport Name="GetFBL5NURL" ReturnType="ZFI_Ar_INVOICE_SRV.ReturnURL" EntitySet="ReturnURLCollection" m:HttpMethod="GET"
+					sap:action-for="ZFI_Ar_INVOICE_SRV.ReturnURL"><Parameter Name="Customer" Type="Edm.String" Mode="In" MaxLength="10"/></FunctionImport>
+				<FunctionImport Name="UpdateStatus" ReturnType="ZFI_Ar_INVOICE_SRV.InvoiceAction" EntitySet="InvoiceActionSet" m:HttpMethod="POST"
+					sap:action-for="ZFI_Ar_INVOICE_SRV.InvoiceHeaderentity"><Parameter Name="Action" Type="Edm.String" Mode="In" MaxLength="10"/><Parameter Name="Comments" Type="Edm.String" Mode="In" MaxLength="50"/><Parameter Name="UId" Type="Edm.String" Mode="In" MaxLength="10"/></FunctionImport>
+			</EntityContainer>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/ApprCmt" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/SubmBy" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/SubmCmt" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/TotalIn" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Gst" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/TotalEx" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/LnTxt" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Sgtxt" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/EmailRequest" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/AddcustEmail" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/EmailCust" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/InvdelvMtd" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Zterm" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/AdjCmnt" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/AdjReason" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/RefundCmnt" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/RefundReason" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Wrbtr" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Xblnr" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/RmRef" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/SuppDoc" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Taxnum" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Addr3" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Addr2" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Addr1" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/PostCode1" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/City1" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Mandt" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Street" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/UId" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/InvType" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Belnr" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/HouseNum1" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Blart" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Bldat" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Bukrs" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/CustName" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Kunnr" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/InvFlg" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Name1" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Name2" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/ApprBy" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/SubmDt" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/ApprDt" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Objtyp" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Objkey" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="com.sap.vocabularies.Common.v1.Text" String=""/></Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Zterm" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Search Help for Terms of Payment"/><PropertyValue Property="CollectionPath" String="ShLordZtermSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Zterm"/><PropertyValue Property="LocalDataProperty" PropertyPath="Zterm"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Zterm"/><PropertyValue Property="LocalDataProperty" PropertyPath="Zterm"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="ZtermT"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Bukrs" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Company Code"/><PropertyValue Property="CollectionPath" String="HT001Set"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Bukrs"/><PropertyValue Property="LocalDataProperty" PropertyPath="Bukrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Bukrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Butxt"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Ort01"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Waers"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Kunnr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Customers (general)"/><PropertyValue Property="CollectionPath" String="DebiaSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Sortl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Land1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Pstlz"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod3"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kunnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Posid" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="WBS element: Project definition and description"/><PropertyValue Property="CollectionPath" String="PrpmpSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Posid"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Posid"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Pspid"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Poski"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Post1"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Hkont" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="G/L account in chart of accounts"/><PropertyValue Property="CollectionPath" String="SakoCoreSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Saknr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Hkont"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Txt50"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Spras"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Ktopl"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/ZfiProductCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Search Help for Product Code"/><PropertyValue Property="CollectionPath" String="ZfiShProductCodeSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="ZfiProductCode"/><PropertyValue Property="LocalDataProperty" PropertyPath="ZfiProductCode"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Hkont"/><PropertyValue Property="LocalDataProperty" PropertyPath="Hkont"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="ZfiProductCode"/><PropertyValue Property="LocalDataProperty" PropertyPath="ZfiProductCode"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Hkont"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="ZfiCodeDesc"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="TaxCode"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Meins" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Help view for T006"/><PropertyValue Property="CollectionPath" String="HT006Set"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Msehi"/><PropertyValue Property="LocalDataProperty" PropertyPath="Meshi"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Msehi"/><PropertyValue Property="LocalDataProperty" PropertyPath="Meins"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mseh3"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Msehl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Txdim"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Kostl" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Cost center By Department"/><PropertyValue Property="CollectionPath" String="ZfiKostnDepartmentSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kostl"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kostl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kostl"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kostl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kokrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kosak"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Verak"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="VerakUser"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mctxt"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Bukrs"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Pspnr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="WBS element: Project definition and description"/><PropertyValue Property="CollectionPath" String="PrpmpSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Pspid"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Poski"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Post1"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Mwskz" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Tax Code"/><PropertyValue Property="CollectionPath" String="ShT007aSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kalsm"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kalsm"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Mwskz"/><PropertyValue Property="LocalDataProperty" PropertyPath="Mwskz"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Text1"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Pspnr" Qualifier="PRPMK" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="WBS element: short identification"/><PropertyValue Property="CollectionPath" String="PrpmkSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Poski"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Post1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Pspnr" Qualifier="PRPMZ" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="WBS element: persons responsible"/><PropertyValue Property="CollectionPath" String="PrpmzSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Verna"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Vernr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Pspnr" Qualifier="PRPMA" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="WBS: Account assignment elements"/><PropertyValue Property="CollectionPath" String="PrpmaSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Post1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Pspnr" Qualifier="PRPMB" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="WBS: Billing elements"/><PropertyValue Property="CollectionPath" String="PrpmbSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Post1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Pspnr" Qualifier="PRPMC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="WBS element: Find using classification"/><PropertyValue Property="CollectionPath" String="PrpmcSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Posid"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Pspnr" Qualifier="IAOM_CPROJECTS_WBS"
+				xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="WBS Elements with Assigned cProjects Project Elements"/><PropertyValue Property="CollectionPath" String="IaomCprojectsWbsSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="ProjElementId"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="BezeichPrjElem"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="RespOrgUnit"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Priority"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="ProType"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Cause"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Grouping"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SearchField"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="TempExternalId"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Customer"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Pspnr" Qualifier="JVH_PRPMG" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Joint Venture"/><PropertyValue Property="CollectionPath" String="JvhPrpmgSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Pbukr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Post1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Vname"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Recid"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Etype"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Otype"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Jibcl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Jibsa"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Posid"/><PropertyValue Property="LocalDataProperty" PropertyPath="Pspnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Kostl" Qualifier="KOSTN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Cost center"/><PropertyValue Property="CollectionPath" String="KostnSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kostl"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kostl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kokrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Bukrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kosar"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Verak"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="VerakUser"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mctxt"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Spras"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Datab"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Datbi"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kostl"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kostl"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Kostl" Qualifier="KOSTD" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Cost Centre for Registration Date"/><PropertyValue Property="CollectionPath" String="KostdSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kostl"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kostl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kokrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Bukrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kosar"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Verak"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="VerakUser"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mctxt"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Spras"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Datab"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Datbi"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kostl"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kostl"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Kostl" Qualifier="KOSTS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Cost center name"/><PropertyValue Property="CollectionPath" String="KostsSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kostl"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kostl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mctxt"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Spras"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kokrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Bukrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kosar"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Kostl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Datab"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Datbi"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kostl"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kostl"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Hkont" Qualifier="GL_ACCT_CC_NO"
+				xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="G/L account number in company code"/><PropertyValue Property="CollectionPath" String="GlAcctCcNoSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Hkont"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Bukrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Txt50"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Saknr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Hkont" Qualifier="GL_ACCT_CC_FLAGS"
+				xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="G/L account with delete/lock flag in company code"/><PropertyValue Property="CollectionPath" String="GlAcctCcFlagsSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Hkont"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Txt50"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Bukrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="XloevKtp"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Xloev"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="XspebKtp"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Xspeb"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Saknr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Hkont" Qualifier="GL_ACCT_CA_NO"
+				xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="G/L account no. in chart of accounts"/><PropertyValue Property="CollectionPath" String="GlAcctCaNoSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Hkont"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Ktopl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Txt50"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Saknr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Hkont" Qualifier="GL_ACCT_CA_TEXT"
+				xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="G/L account description in chart of accounts"/><PropertyValue Property="CollectionPath" String="GlAcctCaTextSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Hkont"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Ktopl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Txt50"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Saknr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceItemsentitySet01/Hkont" Qualifier="GL_ACCT_CA_FLAGS"
+				xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="G/L account with delete/lock flag in chart of accounts"/><PropertyValue Property="CollectionPath" String="GlAcctCaFlagsSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Hkont"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Txt50"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Ktopl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Xloev"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Xspeb"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Xspea"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Xspep"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Saknr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Saknr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Kunnr" Qualifier="DEBID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Customers (by company code)"/><PropertyValue Property="CollectionPath" String="DebidSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Bukrs"/><PropertyValue Property="LocalDataProperty" PropertyPath="Bukrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Sortl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Land1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Pstlz"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod3"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Bukrs"/><PropertyValue Property="LocalDataProperty" PropertyPath="Bukrs"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Kunnr" Qualifier="DEBIE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Customers by country/company code"/><PropertyValue Property="CollectionPath" String="DebieSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Bukrs"/><PropertyValue Property="LocalDataProperty" PropertyPath="Bukrs"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Sortl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Land1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod3"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Bukrs"/><PropertyValue Property="LocalDataProperty" PropertyPath="Bukrs"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Kunnr" Qualifier="DEBIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Customers by country"/><PropertyValue Property="CollectionPath" String="DebilSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Sortl"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Land1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod3"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Kunnr" Qualifier="DEBIP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Customers by personnel number"/><PropertyValue Property="CollectionPath" String="DebipSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Bukrs"/><PropertyValue Property="LocalDataProperty" PropertyPath="Bukrs"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Pernr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Bukrs"/><PropertyValue Property="LocalDataProperty" PropertyPath="Bukrs"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Kunnr" Qualifier="DEBIT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Customers by Tax Information"/><PropertyValue Property="CollectionPath" String="DebitSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Stcd1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Stcd2"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Stcd3"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Stcd4"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Stcd5"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Stceg"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Land1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Mcod1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_AR_INVOICE_SRV.InvoiceHeaderentity/Kunnr" Qualifier="DEBIX" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType"><PropertyValue Property="Label" String="Customers by Address Attributes"/><PropertyValue Property="CollectionPath" String="DebixSet"/><PropertyValue Property="CollectionRoot" String=""/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Name"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Firstname"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Street"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="HouseNum1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PostCode1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="City1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Sort1"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Sort2"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Country"/></Record>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterIn"><PropertyValue Property="ValueListProperty" String="Kunnr"/><PropertyValue Property="LocalDataProperty" PropertyPath="Kunnr"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFI_SEARCH_HELPS_SRV.ZmmVendorSearch" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+					<Collection>
+						<Record Type="com.sap.vocabularies.UI.v1.DataField"><PropertyValue Property="Label" String="Search term"/><PropertyValue Property="Value" Path="Mcod1"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations><atom:link rel="self" href="http://localhost:8080/webidedispatcher/destinations/DE3/sap/opu/odata/sap/ZFI_Ar_INVOICE_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version" href="http://localhost:8080/webidedispatcher/destinations/DE3/sap/opu/odata/sap/ZFI_Ar_INVOICE_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

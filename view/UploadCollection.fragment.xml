@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<UploadCollectionItem documentId="{Name}" fileName="{Filename}" url="{ parts: ['UId', 'Line'], formatter: '.formatter.buildFileGetUrl' }"
+		visibleEdit="false" visibleDelete="false">
+		<attributes>
+			<ObjectAttribute title="Creation Time" text="{path:'Creationtime', formatter: '.formatter.getDateAndTime'}"/>
+			<ObjectAttribute title="File Size" text="{path:'Filesize',formatter: '.formatter.removeLeadingZeroes'} KB"/>
+		</attributes>
+	</UploadCollectionItem>
+</core:FragmentDefinition>

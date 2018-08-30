@@ -1,0 +1,7 @@
+.ZSimpleFormTitle .sapUiFormContainerTitle .sapUiFormTitle {
+	display:none!important;
+}
+
+.ZInformationText{
+	font-size: 0.7rem;
+}

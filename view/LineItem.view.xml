@@ -1,0 +1,64 @@
+<mvc:View controllerName="industry.gov.au.fi.arinv.controller.LineItem" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
+	xmlns:smart="sap.ui.comp.smartfield" xmlns="sap.m" xmlns:smartField="sap.ui.comp.smartfield">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" title="Line Item" busy="{viewModel>/busy}">
+		<semantic:content>
+			<Panel>
+				<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="lineItemSimpleForm"
+					labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024"
+					title="{= ${viewModel>/mode} === 'edit' || ${viewModel>/mode} === 'display'? 'Edit Line Item': 'Display Line Item'}">
+					<f:content>
+						<Label text="Request ID"/>
+						<Input id="UId_id" enabled="false" visible="true" width="5rem"
+							value="{ path: 'UId', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:10, nullable:false } }"/>
+						<Label text="Item Number"/>
+						<Input id="Buzei" enabled="false" visible="true" width="3rem"
+							value="{ path: 'Buzei', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:10, nullable:false } }"/>
+						<smartField:SmartLabel labelFor="glAccount" text="GL Account"/>
+						<smartField:SmartField value="{Hkont}" id="glAccount" width="7rem"
+							editable="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}"/>
+						<smartField:SmartLabel labelFor="productId" text="Product ID"/>
+						<smartField:SmartField value="{ZfiProductCode}" id="productId" width="7rem"
+							editable="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}" />
+						<Label text="Quantity"/>
+						<Input id="productQuantity" enabled="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}"
+							visible="true" value="{ path: 'Menge' }" width="10rem" type="Number" placeholder="0.00"/>
+						<smartField:SmartLabel labelFor="uomDetail" text="UoM"/>
+						<smartField:SmartField value="{Meins}" id="uomDetail" width="5rem"
+							editable="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}"/>
+						<Label text="Amount"/>
+						<Input id="itemAmount" enabled="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}" visible="true"
+							value="{ path: 'Wrbtr' }" width="10rem" type="Number" placeholder="0.00"/>
+						<smartField:SmartLabel labelFor="ccCodeItem" text="Cost Center"/>
+						<smartField:SmartField value="{Kostl}" id="ccCodeItem" width="10rem"
+							editable="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}" mandatory="false"/>
+						<smartField:SmartLabel labelFor="wbsCodeItem" text="WBS"/>
+						<smartField:SmartField value="{Posid}" id="wbsCodeItem" width="10rem"
+							editable="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}" mandatory="false"/>
+						<!--<smartField:SmartLabel labelFor="taxCodeItem" text="Tax Code"/>-->
+						<!--<smartField:SmartField value="{Mwskz}" id="taxCodeItem" width="4rem"-->
+						<!--	editable="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}"/>-->
+						<Label text="Tax Code" labelFor="taxCodeItem"/>
+						<Select id="taxCodeItem" selectedKey="{Mwskz}" width="5rem" items="{path : '/ShT007aSet', filters: [{ path: 'IND', operator: 'EQ', value1: 'AR'}] }"
+						
+							enabled="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}"
+							showSecondaryValues="true"	>
+							<items>
+								<core:ListItem key="{Mwskz}" text="{Mwskz}" additionalText="{Text1}" />
+							</items>
+						</Select>
+						<Label text="Short Text"/>
+						<Input id="itemDescription" enabled="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}"
+							visible="true" value="{ path: 'Sgtxt', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:50, nullable:false } }"
+							maxLength="50"/>
+					</f:content>
+				</f:SimpleForm>
+			</Panel>
+		</semantic:content>
+		<semantic:customFooterContent>
+			<Button id="doneDetailButton" press="onDoneItem" text="Done" type="Accept" visible="true"/>
+			<Button id="cancelDetailButton" press="onItemCancel" text="Cancel" type="Reject"
+				visible="{= ${itemViewModel>/mode} === 'edit' || ${itemViewModel>/mode} === 'create' ? true: false}"/>
+		</semantic:customFooterContent>
+	</semantic:DetailPage>
+</mvc:View>

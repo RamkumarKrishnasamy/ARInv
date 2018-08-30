@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog id="viewSettingsDialog" confirm="onConfirmViewSettingsDialog" resetFilters="onViewSettingsDialogResetFilters">
+		<filterItems>
+			<ViewSettingsFilterItem id="filterItems" text="{i18n>masterFilterName}" key="Price" multiSelect="false">
+				<items>
+					<ViewSettingsItem text="{i18n>masterFilter1}" key="Filter1" id="viewFilter1"/>
+					<ViewSettingsItem text="{i18n>masterFilter2}" key="Filter2" id="viewFilter2"/>
+				</items>
+			</ViewSettingsFilterItem>
+			<ViewSettingsFilterItem id="filterItems2" text="{i18n>masterFilterName2}" key="Type" multiSelect="false">
+				<items>
+					<ViewSettingsItem text="{i18n>masterFilter3}" key="Filter3" id="viewFilter3"/>
+					<ViewSettingsItem text="{i18n>masterFilter4}" key="Filter4" id="viewFilter4"/>
+					<ViewSettingsItem text="{i18n>masterFilter9}" key="Filter4" id="viewFilter9"/>
+				</items>
+			</ViewSettingsFilterItem>	
+			<ViewSettingsFilterItem id="filterItems3" text="{i18n>masterFilterName3}" key="Status" multiSelect="false">
+				<items>
+					<ViewSettingsItem text="{i18n>masterFilter5}" key="Filter5" id="viewFilter5"/>
+					<ViewSettingsItem text="{i18n>masterFilter6}" key="Filter6" id="viewFilter6"/>
+					<ViewSettingsItem text="{i18n>masterFilter7}" key="Filter7" id="viewFilter7"/>
+					<ViewSettingsItem text="{i18n>masterFilter8}" key="Filter8" id="viewFilter8"/>					
+				</items>
+			</ViewSettingsFilterItem>				
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>
