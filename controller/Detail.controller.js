@@ -307,7 +307,7 @@ sap.ui.define([
 			/* Changed by RAM - 07-08-2018 - START */
 			if (!this._oTemplate) {
 				this._oTemplate = sap.ui.xmlfragment({
-					fragmentName: "industry.gov.au.fi.apinv.view.InvoiceLineItems",
+					fragmentName: "industry.gov.au.fi.arinv.view.InvoiceLineItems",
 					type: "XML",
 					oController: this
 				});
