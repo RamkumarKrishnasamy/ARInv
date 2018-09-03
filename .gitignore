@@ -7,7 +7,11 @@ fioriHtmlRunner.html
 .*/fioriHtmlRunner.html
 visual_ext_index.html
 /webapp/visual_ext_index.html
+<<<<<<< Upstream, based on 2153960a9c459fe210430e09b2de0e9fb95657c6
 neo-app.json
 resources.json
 .project.json
 .user.project.json
+=======
+.user.project.json
+>>>>>>> 6f2507b added new files
