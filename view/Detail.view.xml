@@ -201,9 +201,9 @@
 						</VBox>
 					</IconTabFilter>
 					<IconTabFilter id="iconTabBarFilterAttachments" icon="sap-icon://attachment" tooltip="{i18n>detailIconTabBarAttachments}">
-						<UploadCollection id="InvoiceAttachmentsCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="false"
+						<UploadCollection id="InvoiceAttachmentsCollection" maximumFilenameLength="120" maximumFileSize="10" multiple="false"
 							sameFilenameAllowed="false" noDataText="Please ensure all supporting documents are attached with the submission"
-							instantUpload="false" uploadUrl="/sap/opu/odata/sap/ZFI_AR_INVOICE_SRV/InvoiceAttachmentsentitySet/" change="onUploadChange"
+							noDataDescription="Use &quot;+&quot; button to upload files." instantUpload="false" uploadUrl="/sap/opu/odata/sap/ZFI_AR_INVOICE_SRV/InvoiceAttachmentsentitySet/" change="onUploadChange"
 							beforeUploadStarts="onBeforeUploadFile" uploadComplete="onUploadComplete" fileDeleted="onFileDeleted"  
 							filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
 							items="{ path: 'Attachments', sorter: [{ path: 'Name', descending: false, group: false }] }">
