@@ -77,9 +77,9 @@
 									<Label text="Alternate Customer Email" labelFor="addCustomerEmail" />
 									<Input id="addCustomerEmail" value="{AddcustEmail}" width="13rem" editable="{= ((${InvdelvMtd} === 'EMTC') || (${InvdelvMtd} === 'MTRC')) &amp;&amp; (${detailView>/mode} === 'edit' || ${detailView>/mode} === 'create') &amp;&amp; ${Fstatus} !== 'REQ_SUBMIT' &amp;&amp; ${Fstatus} !== 'REQ_APPR' &amp;&amp; ${Fstatus} !== 'REQ_REJECT' }" visible="{= ${InvType} === '2' ? false: true }"/>	
 									
-									<Label text="Short Text"/>
+								<!--	<Label text="Short Text"/>
 									<TextArea value="{Sgtxt}" maxLength="50" width="100%" rows="1"
-										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>									
+										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>									-->
 									<Label text="Long Text"/>
 									<TextArea value="{LnTxt}" maxLength="1333" width="100%" rows="2"
 										editable="{parts:[{path:'Fstatus'},{path:'detailView>/mode'}], formatter:'.formatter.isEditable'}"/>									
