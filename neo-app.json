@@ -42,10 +42,10 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "DE3",
+        "name": "DE3404",
         "entryPath": "/sap/opu/odata"
       },
-      "description": "DE3"
+      "description": "DE3404"
     },
     {
       "path": "/sap/bc/ui5_ui5",

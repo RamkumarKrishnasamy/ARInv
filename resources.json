@@ -1,43 +1,16 @@
 {
     "resources": [
         {
+            "name": ".project.json"
+        },
+        {
             "name": "index.html"
         },
         {
-            "name": "view/UploadCollection.fragment.xml"
+            "name": "css/style.css"
         },
         {
-            "name": "view/DetailNoObjectsAvailable.view.xml"
-        },
-        {
-            "name": "view/Master.view.xml"
-        },
-        {
-            "name": "view/InvoiceLineItems.fragment.xml"
-        },
-        {
-            "name": "view/ViewSettingsDialog.fragment.xml"
-        },
-        {
-            "name": "view/DetailObjectNotFound.view.xml"
-        },
-        {
-            "name": "view/LineItem.view.xml"
-        },
-        {
-            "name": "view/NotFound.view.xml"
-        },
-        {
-            "name": "view/MessagePopover.fragment.xml"
-        },
-        {
-            "name": "view/Detail.view.xml"
-        },
-        {
-            "name": "view/App.view.xml"
-        },
-        {
-            "name": "controller/ListSelector.js"
+            "name": ".user.project.json"
         },
         {
             "name": "controller/Detail.controller.js"
@@ -46,26 +19,41 @@
             "name": "controller/App.controller.js"
         },
         {
-            "name": "controller/LineItem.controller.js"
+            "name": "controller/ErrorHandler.js"
         },
         {
-            "name": "controller/ErrorHandler.js"
+            "name": "controller/LineItem.controller.js"
         },
         {
             "name": "controller/Master.controller.js"
         },
         {
+            "name": "controller/ListSelector.js"
+        },
+        {
             "name": "controller/BaseController.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "model/GroupSortState.js"
+        },
+        {
+            "name": "model/grouper.js"
         },
         {
             "name": "neo-app.json"
         },
         {
-            "name": "resources.json",
-            "merged": true
+            "name": "manifest.json"
         },
         {
-            "name": ".project.json"
+            "name": "resources.json",
+            "merged": true
         },
         {
             "name": "localService/metadata.xml"
@@ -77,29 +65,45 @@
             "name": "Component.js"
         },
         {
-            "name": "model/GroupSortState.js"
+            "name": "view/MessagePopover.fragment.xml"
         },
         {
-            "name": "model/grouper.js"
+            "name": "view/InvoiceLineItems.fragment.xml"
         },
         {
-            "name": "model/formatter.js"
+            "name": "view/App.view.xml"
         },
         {
-            "name": "model/models.js"
+            "name": "view/NotFound.view.xml"
         },
         {
-            "name": "css/style.css"
+            "name": "view/UploadCollection.fragment.xml"
         },
         {
-            "name": ".user.project.json"
+            "name": "view/Master.view.xml"
+        },
+        {
+            "name": "view/ViewSettingsDialog.fragment.xml"
+        },
+        {
+            "name": "view/DetailNoObjectsAvailable.view.xml"
+        },
+        {
+            "name": "view/DetailObjectNotFound.view.xml"
+        },
+        {
+            "name": "view/Detail.view.xml"
+        },
+        {
+            "name": "view/LineItem.view.xml"
         },
         {
             "name": "Component-preload.js",
             "merged": true
         },
         {
-            "name": "manifest.json"
+            "name": "i18n/i18n_en.properties",
+            "raw": "i18n/i18n.properties"
         },
         {
             "name": "i18n/i18n.properties",
@@ -107,10 +111,6 @@
         },
         {
             "name": "i18n/i18n_en_US.properties",
-            "raw": "i18n/i18n.properties"
-        },
-        {
-            "name": "i18n/i18n_en.properties",
             "raw": "i18n/i18n.properties"
         }
     ]
